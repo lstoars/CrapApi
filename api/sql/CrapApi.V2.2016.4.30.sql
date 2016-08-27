@@ -1,30 +1,30 @@
 /*接口添加版本号*/
-ALTER TABLE `api`.`interface` 
+ALTER TABLE `interface` 
 ADD COLUMN `version` VARCHAR(20) NOT NULL DEFAULT '1.0' COMMENT '版本号' AFTER `createTime`;
 
-ALTER TABLE `api`.`setting` 
+ALTER TABLE `setting` 
 ADD COLUMN `sequence` INT NOT NULL DEFAULT 0 COMMENT '排序，越大越靠前' AFTER `canDelete`;
 
-ALTER TABLE `api`.`comment` 
+ALTER TABLE `comment` 
 ADD COLUMN `sequence` INT NOT NULL DEFAULT 0 COMMENT '排序，越大越靠前';
 
-ALTER TABLE `api`.`error` 
+ALTER TABLE `error` 
 ADD COLUMN `sequence` INT NOT NULL DEFAULT 0 COMMENT '排序，越大越靠前';
 
-ALTER TABLE `api`.`interface` 
+ALTER TABLE `interface` 
 ADD COLUMN `sequence` INT NOT NULL DEFAULT 0 COMMENT '排序，越大越靠前';
 
-ALTER TABLE `api`.`menu` 
+ALTER TABLE `menu` 
 ADD COLUMN `sequence` INT NOT NULL DEFAULT 0 COMMENT '排序，越大越靠前';
 
-ALTER TABLE `api`.`module` 
+ALTER TABLE `module` 
 ADD COLUMN `sequence` INT NOT NULL DEFAULT 0 COMMENT '排序，越大越靠前';
 
-ALTER TABLE `api`.`role` 
+ALTER TABLE `role` 
 ADD COLUMN `sequence` INT NOT NULL DEFAULT 0 COMMENT '排序，越大越靠前';
 
-ALTER TABLE `api`.`user` 
+ALTER TABLE `user` 
 ADD COLUMN `sequence` INT NOT NULL DEFAULT 0 COMMENT '排序，越大越靠前';
 
-ALTER TABLE `api`.`webpage` 
+ALTER TABLE `webpage` 
 ADD COLUMN `sequence` INT NOT NULL DEFAULT 0 COMMENT '排序，越大越靠前';

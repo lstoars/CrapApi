@@ -17,11 +17,11 @@ import cn.crap.service.CacheService;
 import cn.crap.utils.MyString;
 
 @Entity
-@Table(name="interface")
-@GenericGenerator(name="Generator", strategy="cn.crap.framework.IdGenerator")
-public class Interface extends BaseModel implements Serializable{
+@Table(name = "interface")
+@GenericGenerator(name = "Generator", strategy = "cn.crap.framework.IdGenerator")
+public class Interface extends BaseModel implements Serializable {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private String url;
@@ -40,10 +40,15 @@ public class Interface extends BaseModel implements Serializable{
 	private String errors;
 	private String version;//版本号
 	private String header;//请求头
-	
-	public Interface(){}
-	
-	
+	private String dubboService;
+	private String serviceMethod;
+	private Integer timeout;
+	private Integer retries;
+
+	public Interface() {
+	}
+
+
 	public Interface(String id, String moduleId, String interfaceName, String version, String createTime, String updateBy, String updateTime) {
 		super();
 		this.id = id;
@@ -57,7 +62,7 @@ public class Interface extends BaseModel implements Serializable{
 
 
 	@Transient
-	public SearchDto toSearchDto(){
+	public SearchDto toSearchDto() {
 		SearchDto dto = new SearchDto();
 		dto.setId(id);
 		dto.setCreateTime(createTime);
@@ -65,42 +70,42 @@ public class Interface extends BaseModel implements Serializable{
 		dto.setModuleName(getModuleName());
 		dto.setTitle(interfaceName);
 		dto.setType(Interface.class.getSimpleName());
-		dto.setUrl("web.do#/webInterfaceDetail/"+id);
+		dto.setUrl("web.do#/webInterfaceDetail/" + id);
 		dto.setVersion(version);
 		return dto;
-		
+
 	}
-	
-	
+
+
 	@Transient
 	@Override
-	public String getLogRemark(){
+	public String getLogRemark() {
 		return interfaceName;
 	}
-	
+
 	@Transient
-	public String getModuleName(){
-		if(!MyString.isEmpty(moduleId)){
+	public String getModuleName() {
+		if (!MyString.isEmpty(moduleId)) {
 			ICacheService cacheService = SpringContextHolder.getBean("cacheService", CacheService.class);
 			DataCenter module = cacheService.getModule(moduleId);
-			if(module!=null)
+			if (module != null)
 				return module.getName();
 		}
 		return "";
 	}
-	
+
 	@Transient
-	public String getModuleUrl(){
-		if(!MyString.isEmpty(moduleId)){
+	public String getModuleUrl() {
+		if (!MyString.isEmpty(moduleId)) {
 			ICacheService cacheService = SpringContextHolder.getBean("cacheService", CacheService.class);
 			DataCenter module = cacheService.getModule(moduleId);
-			if(module!=null)
-				return MyString.isEmpty(module.getUrl())?"":module.getUrl();
+			if (module != null)
+				return MyString.isEmpty(module.getUrl()) ? "" : module.getUrl();
 		}
 		return "";
 	}
-	
-	@Column(name="errors")
+
+	@Column(name = "errors")
 	public String getErrors() {
 		return errors;
 	}
@@ -109,7 +114,7 @@ public class Interface extends BaseModel implements Serializable{
 		this.errors = errors;
 	}
 
-	@Column(name="url")
+	@Column(name = "url")
 	public String getUrl() {
 		return url;
 	}
@@ -118,7 +123,7 @@ public class Interface extends BaseModel implements Serializable{
 		this.url = url;
 	}
 
-	@Column(name="method")
+	@Column(name = "method")
 	public String getMethod() {
 		return method;
 	}
@@ -127,9 +132,9 @@ public class Interface extends BaseModel implements Serializable{
 		this.method = method;
 	}
 
-	@Column(name="param")
+	@Column(name = "param")
 	public String getParam() {
-		if(MyString.isEmpty(param))
+		if (MyString.isEmpty(param))
 			return "form=[]";
 		return param;
 	}
@@ -138,7 +143,7 @@ public class Interface extends BaseModel implements Serializable{
 		this.param = param;
 	}
 
-	@Column(name="requestExam")
+	@Column(name = "requestExam")
 	public String getRequestExam() {
 		return requestExam;
 	}
@@ -147,9 +152,9 @@ public class Interface extends BaseModel implements Serializable{
 		this.requestExam = requestExam;
 	}
 
-	@Column(name="responseParam")
+	@Column(name = "responseParam")
 	public String getResponseParam() {
-		if(MyString.isEmpty(responseParam))
+		if (MyString.isEmpty(responseParam))
 			return "[]";
 		return responseParam;
 	}
@@ -158,7 +163,7 @@ public class Interface extends BaseModel implements Serializable{
 		this.responseParam = responseParam;
 	}
 
-	@Column(name="errorList")
+	@Column(name = "errorList")
 	public String getErrorList() {
 		return errorList;
 	}
@@ -167,7 +172,7 @@ public class Interface extends BaseModel implements Serializable{
 		this.errorList = errorList;
 	}
 
-	@Column(name="trueExam")
+	@Column(name = "trueExam")
 	public String getTrueExam() {
 		return trueExam;
 	}
@@ -176,7 +181,7 @@ public class Interface extends BaseModel implements Serializable{
 		this.trueExam = trueExam;
 	}
 
-	@Column(name="falseExam")
+	@Column(name = "falseExam")
 	public String getFalseExam() {
 		return falseExam;
 	}
@@ -185,7 +190,7 @@ public class Interface extends BaseModel implements Serializable{
 		this.falseExam = falseExam;
 	}
 
-	@Column(name="moduleId")
+	@Column(name = "moduleId")
 	public String getModuleId() {
 		return moduleId;
 	}
@@ -193,8 +198,8 @@ public class Interface extends BaseModel implements Serializable{
 	public void setModuleId(String moduleId) {
 		this.moduleId = moduleId;
 	}
-	
-	@Column(name="interfaceName")
+
+	@Column(name = "interfaceName")
 	public String getInterfaceName() {
 		return interfaceName;
 	}
@@ -202,8 +207,8 @@ public class Interface extends BaseModel implements Serializable{
 	public void setInterfaceName(String interfaceName) {
 		this.interfaceName = interfaceName;
 	}
-	
-	@Column(name="remark")
+
+	@Column(name = "remark")
 	public String getRemark() {
 		return remark;
 	}
@@ -211,7 +216,8 @@ public class Interface extends BaseModel implements Serializable{
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	@Column(name="updateBy")
+
+	@Column(name = "updateBy")
 	public String getUpdateBy() {
 		return updateBy;
 	}
@@ -219,7 +225,8 @@ public class Interface extends BaseModel implements Serializable{
 	public void setUpdateBy(String updateBy) {
 		this.updateBy = updateBy;
 	}
-	@Column(name="updateTime")
+
+	@Column(name = "updateTime")
 	public String getUpdateTime() {
 		return updateTime;
 	}
@@ -236,9 +243,9 @@ public class Interface extends BaseModel implements Serializable{
 		this.version = version;
 	}
 
-	@Column(name="header")
+	@Column(name = "header")
 	public String getHeader() {
-		if(MyString.isEmpty(header))
+		if (MyString.isEmpty(header))
 			return "[]";
 		return header;
 	}
@@ -246,7 +253,39 @@ public class Interface extends BaseModel implements Serializable{
 	public void setHeader(String header) {
 		this.header = header;
 	}
-	
-	
 
+	@Column(name = "dubboService")
+	public String getDubboService() {
+		return dubboService;
+	}
+
+	public void setDubboService(String dubboService) {
+		this.dubboService = dubboService;
+	}
+
+	@Column(name = "serviceMethod")
+	public String getServiceMethod() {
+		return serviceMethod;
+	}
+
+	public void setServiceMethod(String serviceMethod) {
+		this.serviceMethod = serviceMethod;
+	}
+	@Column(name = "timeout")
+	public Integer getTimeout() {
+		return timeout;
+	}
+
+	public void setTimeout(Integer timeout) {
+		this.timeout = timeout;
+	}
+
+	@Column(name = "retries")
+	public Integer getRetries() {
+		return retries;
+	}
+
+	public void setRetries(Integer retries) {
+		this.retries = retries;
+	}
 }

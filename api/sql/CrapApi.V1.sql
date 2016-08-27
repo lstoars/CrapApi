@@ -21,14 +21,11 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED='9746bafa-1a4d-11e5-b90a-d89d672a9388:1-1523274,
-9ce0b44b-1a4d-11e5-b90a-1051721c3b2a:1-1524332';
 
 --
 -- Table structure for table `error`
 --
 
-DROP TABLE IF EXISTS `error`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `error` (
@@ -57,7 +54,6 @@ UNLOCK TABLES;
 -- Table structure for table `interface`
 --
 
-DROP TABLE IF EXISTS `interface`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `interface` (
@@ -89,7 +85,6 @@ CREATE TABLE `interface` (
 -- Table structure for table `menu`
 --
 
-DROP TABLE IF EXISTS `menu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `menu` (
@@ -120,7 +115,6 @@ UNLOCK TABLES;
 -- Table structure for table `module`
 --
 
-DROP TABLE IF EXISTS `module`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `module` (
@@ -148,7 +142,6 @@ UNLOCK TABLES;
 -- Table structure for table `role`
 --
 
-DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `role` (
@@ -176,7 +169,6 @@ UNLOCK TABLES;
 -- Table structure for table `setting`
 --
 
-DROP TABLE IF EXISTS `setting`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `setting` (
@@ -206,7 +198,6 @@ UNLOCK TABLES;
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
@@ -239,7 +230,6 @@ UNLOCK TABLES;
 -- Table structure for table `webpage`
 --
 
-DROP TABLE IF EXISTS `webpage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `webpage` (

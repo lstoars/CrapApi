@@ -7,12 +7,13 @@ import cn.crap.inter.service.ISearchService;
 import cn.crap.service.CacheService;
 import cn.crap.service.LuceneSearchService;
 import cn.crap.service.SolrSearchService;
+import org.apache.commons.lang.StringUtils;
 
 
 public class GetBeanBySetting {
 	 public static ISearchService getSearchService(){
 	    	ICacheService cacheService = SpringContextHolder.getBean("cacheService", CacheService.class);
-	        if(cacheService.getSetting(Const.SEARCH_TYPE).getValue().equals("solrSearch")){
+	        if(StringUtils.equals(cacheService.getSetting(Const.SEARCH_TYPE).getValue(),"solrSearch")){
 	            return SpringContextHolder.getBean("solrSearch",SolrSearchService.class);
 	        }else{
 	            return SpringContextHolder.getBean("luceneSearch",LuceneSearchService.class);
