@@ -76,8 +76,12 @@ public class InterfaceController extends BaseController<Interface> {
 		} else {
 			model = new Interface();
 			model.setModuleId(interFace.getModuleId());
-			model.setStatus((byte)1);
+			model.setStatus((byte) 1);
 			model.setMethod("POST,");
+			Setting head = cacheService.getSetting("COMMON_HEAD");
+			if (head != null) {
+				model.setHeader(head.getValue());
+			}
 			Setting params = cacheService.getSetting("COMMON_PARAMS");
 			if (params != null) {
 				model.setParam(params.getValue());
