@@ -49,14 +49,13 @@ CREATE TABLE `datacenter` (
   `remark` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
-  `code` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of datacenter
 -- ----------------------------
-INSERT INTO `datacenter` VALUES ('dc92d9d2-267a-4418-9113-da58446e9752', '2016-08-27 09:05:53', '0', '0', '0', '消息中心', '0', '', '', 'MODULE', '172.16.2.86:8080', 'msg-center');
+INSERT INTO `datacenter` VALUES ('dc92d9d2-267a-4418-9113-da58446e9752', '2016-08-27 09:05:53', '0', '0', '0', '吉农接口', '0', '', '', 'MODULE', 'http://172.16.2.86:8080');
 
 -- ----------------------------
 -- Table structure for error
@@ -76,125 +75,6 @@ CREATE TABLE `error` (
 -- Records of error
 -- ----------------------------
 INSERT INTO `error` VALUES ('0008a40d-b79c-4579-a9f9-f0a04dba1403', '205013', '获取收获地址出错', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('00743df0-a358-4dd1-8856-dbdeb1f78633', '281007', '红包不存在', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('00932ac3-1b4d-4b27-8a54-46ae2c907ab5', '210001', '确认收货已超过15天，不能发起售后', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('0173ac20-bb4d-4704-8a85-1077dc9b84d0', '000007', '活动尚未开始，申请失败！', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('0185f80b-a467-49c3-bd96-27c6797be0f4', '220001', 'F码无效，请核对后重新输入', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('02107ca6-f855-490c-85f2-94e1cbdf17a3', '208109', '验证码错误', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('04497cf7-2f10-41a5-9519-eb058a376196', '200004', 'Unsupported http request Method', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('0500dcf9-4548-4dac-b769-2d2c3585cdbd', '000000', 'Correct!', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('0a5f7843-cbc1-4ca6-85ae-b47bf1d4bc4d', '208121', '不是有效的手机号', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('0a826872-7e77-4ed5-afc2-c1ddf6b44272', '240007', '体验码已作废', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('0b4e412f-e09f-4bd8-8738-be79aa089f74', '205014', '保存订单异常', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('17a69314-a708-45de-88d4-2ee6b345860a', '212008', '订单不属于指定的商家', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('18d18226-43eb-47d6-98e3-b773dd32ed8b', '220002', 'F码已失效', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('193625e6-a881-4152-b659-fc08193b8ffa', '212002', '订单不存在。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('1a040af7-8474-4fe1-8703-8594ad69a44e', '208123', '输入的手机号为空', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('1de575fb-706b-4b9f-95c8-f6c77865e6dd', '210002', '所有商品都已退货，不能再发起退货', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('1e01a3dd-1711-44ab-8481-3f15c57cdcde', '000012', '抱歉，您所选择的试用商品已被抢完，去看看其他活动吧~', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('1e85c7e3-9ee9-4884-8c4f-061a2ad0e8ad', '205004', '当前用户操作不合法', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('1f60abf1-698a-4612-acde-021358376175', '205006', '商家未设置包装信息', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('1f6745e4-3a11-4a7a-8080-4c8d5d457c10', '208126', '获取用户信息失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('2069622d-579e-460e-89c0-dcfaa924fc82', '281014', '趣分期兑换uid为空', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('249f00da-9465-41e0-97b9-18ac6e9075f6', '208106', '输入的密码和原密码相同', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('26622971-152d-4b31-9ba3-0710ce8e2850', '205007', '删除指定商品失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('275be2d3-c3a3-4a0e-8abc-9045033913cc', '200005', 'Unsupported http request Method', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('2d12aef3-99f4-4d21-bf78-25eb0b2ced82', '205003', '商品添加至购物车失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('2ece77ba-acdd-4abe-a159-c7ed2038fe83', '281012', '趣分期兑换码已使用', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('303e8413-6cfd-4c42-999f-103cbc14d038', '205015', '未找到待支付的订单', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('3154701e-7edc-42b7-b8ce-79a96b2d84cf', '211001', '提现税额计算错误。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('3380cef1-432e-4d18-a556-c4b4abd7c279', '281013', '趣分期兑换码无效', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('37af2829-4d38-42ba-bb95-964d5b3aff47', '210003', '此商品有正在处理中未完成的退货申请', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('39bdddf8-f491-42e1-8c84-3f55ded2a43c', '281005', '红包使用中', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('3c692a35-19c3-48d4-b2c7-e854208963c2', '000002', '授权验证失败', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('416a5375-9dc7-46d6-b8cc-6af4d28ead39', '281010', '趣分期兑换码长度错误', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('4521bab8-65f0-4e74-9029-e606cc3b3097', '210010', '使用红包的商品，退款金额与最大可退金额不匹配', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('47f19229-a789-418e-b499-a32a3bf107da', '200002', '接口参数错误', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('4ab0a03f-ba31-4458-bf95-6e268ae99af0', '240005', '该体验码只能购买指定商品，请核查后再使用', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('4b5d2c59-b001-439f-9b39-152030637cfd', '205009', '更新购物车商品包装信息失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('4bd6ef55-262e-4e36-8fa7-995200ca8399', '208103', '该账户名不存在', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('4c56df46-8059-406c-8e07-5730ceca1a9e', '210008', '退款已完成', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('51857555-c405-4739-ad92-910696ac1d24', '208104', '您输入的密码和账户名不匹配，请重新输入', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('57b12e4d-4130-4a01-ab35-5ca2d356ecd8', '212003', '订单状态不是待付款。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('590db662-1035-4b9c-85c8-5c002e679747', '212005', '无效的链接。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('5d232003-0991-40f0-b955-62a8cee30313', '205002', '用户未登录', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('5d3b33e4-e61a-4cb3-932b-a90e8d929ca4', '220004', 'F码不能重复使用', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('62fbdfb8-f7d2-42ca-881f-e137af8a248d', '240004', '不能使用体验码', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('69db4154-de80-4974-8c73-79f98be0e601', '208101', '用户名已经被注册', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('6bdcf310-e2cf-4d78-b171-1c4e6c831b82', '200001', 'Invalid request headers', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('6d6c4b2a-c03f-44c1-a66d-9ae3cd9d9531', '208124', '不存在输入idcard的账户', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('6ed2fea8-9836-43d4-b2f8-e6f83e56ede0', '270001', '签名验证不通过', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('70165dce-92d2-489c-a5af-efbbab08c78e', '281011', '趣分期兑换码已过期', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('720934d6-59f8-46d8-8a4a-28a9653e1353', '000003', 'API接口异常错误', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('74b681d9-b304-4f05-b3d3-75c87ea9959c', '000001', 'Unknown errors', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('7d2a5131-af7d-48a8-a78b-b4a194c5602f', '200008', '网络异常,请稍后重试', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('7e6783db-f61b-4841-94d7-5f5733f392b5', '270002', '不是小米订单无需处理', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('7ee682f9-54da-4363-88e0-7ada8c445e4b', '205010', '购物车信息已经发生变化，请确认订单是否已经提交，或重新刷新', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('805bb8d3-5bf7-44a3-855d-5966d0ddf0fa', '240002', '很遗憾，该体验码已过期', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('82e675b4-0c11-414d-8640-91ddead4f3b1', '000001', '系统未知错误', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('8507a333-d404-4665-87ae-81553747c777', '000010', '已被抢光|商品太热门啦，瞬间就被抢光啦~', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('8a875a4d-80de-4158-b27c-8d3734847a69', '281008', '红包同步至小米失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('8c4e3635-4434-45cd-ae45-85ae06634d7d', '205011', '消费积分密码输入错误', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('8d656621-610c-4f10-aba6-a34fd1c93fbf', '208125', '授权失败，请稍后重试', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('8e0f53f3-f830-43bc-9b21-429a21ca6c6f', '210006', '未找到对应的受理单', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('8f685f9d-de83-4bf3-b7d1-15b2eda60720', '240001', '体验码不存在，请重新输入', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('913a5960-37d2-48a3-a33b-35c8c74da786', '208122', '输入的验证码错误', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('91b8d2f4-3561-40b5-837c-47793a34a8c0', '210005', '订单不存在', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('92d5c8de-ce8a-4d68-8241-c63f1bd178ba', '208100', '请正确输入您的手机号码', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('95ec015a-1e7b-418f-9027-dbe556e22a75', '205012', '输入积分超出您所拥有积分', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('97a83455-a014-470d-a844-d7b638ade5e2', '212006', '订单金额不匹配。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('97b85c51-3e42-4825-aa05-d29e8f527ecb', '000008', '任务完成|小伙伴们太给力了，砍价任务已经完成啦~', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('9a554aca-b136-4ac7-9413-bbf748c03646', '212001', '订单状态不一致。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('9be00150-2ebf-46a6-bc33-346bd71ccc85', '205018', '减库存失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('a0e82d5a-1bc5-43e0-bfd9-08ee5358de7d', '205016', '订单支付金额异常', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('a123a0db-d06b-4be3-a33b-e08777b64e7c', '206004', '输入的样例ID不是眼镜品类。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('a1d7ba85-b365-428e-9d18-31be64aac13b', '281009', '红包和体验码不能同时使用', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('a35204cb-f40f-4765-9d80-e777cea478e0', '240003', '体验码已被使用，不能重复使用', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('a45a841d-3f1f-4704-b3f8-b8c4118cb9b7', '208128', '用户表绑定手机号或小米用户表绑定原有用户出错', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('a53c9cfe-b7cb-4ffe-be0e-29cbe94b84b1', '200009', 'not have right', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('a882eb92-e398-4d66-b872-5f7b87b19ec1', '000016', '抱歉|API网络异常~', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('a8e0bac1-2877-46f4-af4c-4e8d2bf2a092', '208105', '密码格式错误', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('aa4ddfdf-45e3-40d6-8788-38a49ff3f898', '200000', 'Invalid token', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('abfa084b-517c-4d90-a392-380e5457d2e9', '000014', '调取接口，创建订单失败！', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('b26cee4a-0855-4450-b44a-aba5ccb122bc', '208116', '更改密码失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('b9bcf9ac-3929-4d3e-9c40-8e5a8a61da65', '281004', '红包已过期', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('bb491747-3c7a-4ce5-bdbc-de66d5716b3b', '205005', '添加商品至购物车前更新购物车操作状态失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('bcdf9fa5-1bea-45df-bd65-b8424fda29a4', '281006', '红包已作废', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('bec06964-c15e-4c7e-b070-105de698ff23', '210009', '退款单已关闭', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('c0b52782-9fda-4859-93ad-f752c40f3853', '000006', '已被抢光|商品太热门啦，瞬间就被抢光啦~', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('c17a360a-4d78-4302-8016-f4319fb5d2dd', '100001', '抱歉，微信请求失败~', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('c53d5bf3-3a33-41fb-aafa-3e7b9804b923', '281015', 'templateId为空', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('c66a966c-1561-413d-ae80-4d00cb6242b0', '205019', '增加库存失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('c72a7dd0-a3e1-4172-9898-74ea3cc65206', '250012', '插入数据失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('cce84c9f-1423-4fe3-b3fc-c0017f116dc5', '205017', '此商品部分材料库存不足', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('cf4e5872-35c5-4a15-a5cb-7e3f36fd8d21', '208118', '注册失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('d05d5b11-b794-42bf-a52a-42cb30cf33d7', '260002', '赔偿单必须是赔款失败状态', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('d2d545cb-276b-43b7-b32a-4b93026eb34a', '000015', '抱歉，当前试用活动已结束，去看看其他活动吧~', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('d2d7e8b7-d649-4d82-b5c5-8e9562ad8f2c', '200010', '生成token失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('d4214a33-575a-447f-b346-4d508dfd1962', '100000', 'Failed to parse Json String', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('dac0a59e-1136-4f15-9af5-4aa802e8b1f3', '281001', '红包活动已过期', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('dc2c1eef-1ba4-4059-85c9-8ed28f579f07', '208102', '系统异常错误。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('de4eee77-3b5e-4a99-bc96-b69cbf28cd22', '260001', '赔偿单必须是未申请状态', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('def6f8fd-569f-479d-8b6b-69bc0427963b', '000009', '已被抢光|当前活动已结束，感谢参与~', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('e209640c-3de9-4e68-bb53-e144318e19fe', '230001', '商品已被抢光。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('e561cf42-9d87-441d-bcad-c975d2486742', '212009', '汽车限量购校验未通过', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('e6c3e35b-9cec-459e-90e9-5a01129b5d9f', '210007', '商家同意退款，等待退款', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('e8befe32-68e2-43e2-96a9-1b6494c26f1c', '220003', 'F码已失效', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('eb71ac41-9cac-436b-9867-4d68e61a9109', '240008', '体验码已锁定', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('ec2a3cd4-375d-412d-b456-bd00b72ab12a', '205001', '当前用户不合法', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('ed5b7808-e5a2-4adc-b669-a800308e59e1', '205008', '更新购物车商品数量失败', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('f010f479-00f0-4991-b091-3071086a71e7', '100002', '解析微信请求失败~', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('f1ce26cd-ea6b-4e77-9c65-1499fcb24e78', '000004', '您已砍过|您已经帮Ta砍过一次咯~', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('f21bcb0b-f5c6-4611-9ade-5728909385bd', '000011', '试用单状态有误，操作失败！', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('f238f75d-52a9-486b-baa2-7d70e31f5466', '250011', '该手机号已预约过该品类', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('f6b3c360-4143-4393-8db0-905f21b85474', '212007', '订单金额小于等于0。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('f8637659-051f-4663-b1a9-c4c7f7e69961', '281002', '该用户已申请过此活动。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('fa13cd7f-3dd9-4aba-af62-394814c943b0', '210004', '退款总金额必须大于0', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('fa8be73f-8110-41aa-a5f3-4f1243ab68be', '240006', '该体验码只能购买指定商品，请核查后再使用', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('fc547387-7858-4fcc-b0d1-6c9f6aeb3bb5', '000005', '很抱歉，您已参与试用活动，在此活动结束后您可再次参与其它活动！', '62bde6e0-988b-475f-bfdf-76203455ec57', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('fc56cbde-32fc-44d5-bd07-ca94f06e4c28', '281003', '红包已使用', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('fd1efbe0-5d30-4a3e-813e-8cabcf5bc2ed', '200007', '处理过程中出现异常', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
-INSERT INTO `error` VALUES ('fd863656-3cd0-4dc7-b315-abb343bf850b', '212004', '订单已被支付。', '9e6596c1-9fda-4cd2-b20a-1cce7e572a65', '2016-04-01 12:14:20', '1', '0');
 
 -- ----------------------------
 -- Table structure for interface
@@ -220,10 +100,6 @@ CREATE TABLE `interface` (
   `version` varchar(20) NOT NULL DEFAULT '1.0' COMMENT '版本号',
   `sequence` int(11) NOT NULL DEFAULT '0' COMMENT '排序，越大越靠前',
   `header` text,
-  `dubboService` varchar(255) DEFAULT NULL,
-  `retries` varchar(255) DEFAULT NULL,
-  `serviceMethod` varchar(255) DEFAULT NULL,
-  `timeout` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `url` (`url`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
@@ -231,7 +107,7 @@ CREATE TABLE `interface` (
 -- ----------------------------
 -- Records of interface
 -- ----------------------------
-INSERT INTO `interface` VALUES ('137ca407-fa23-483c-ac23-525dab46993f', '/api/sendSms.json', 'POST,', 'form=[{\"name\":\"mobile\",\"necessary\":\"true\",\"type\":\"String\",\"def\":\"无\",\"remark\":\"手机号码\",\"inUrl\":\"false\"},{\"name\":\"templateCode\",\"necessary\":\"true\",\"type\":\"String\",\"def\":\"无\",\"remark\":\"模版编号\",\"inUrl\":\"false\"},{\"name\":\"bussinessCode\",\"necessary\":\"true\",\"type\":\"String\",\"def\":\"无\",\"remark\":\"应用方编号\",\"inUrl\":\"false\"}]', '请求地址:172.16.2.86:8080/api/sendSms.json\r\n请求头:\r\n请求参数:\r\n	mobile=无\r\n	templateCode=无\r\n	bussinessCode=无\r\n', '[]', '', '', '', '1', 'dc92d9d2-267a-4418-9113-da58446e9752', '短信发送', '<p>用于发送短信的接口</p>', '[]', 'userName：admin | trueName：超级管理员', '2016-08-27 10:01:00', '2016-08-27 09:08:48', '1.0', '0', '[]', 'com.jjshome.platform.mc.service.IMessageService', '0', 'sendSms', '2000');
+INSERT INTO `interface` VALUES ('137ca407-fa23-483c-ac23-525dab46993f', '/api/sendSms.json', 'POST,', 'form=[{\"name\":\"mobile\",\"necessary\":\"true\",\"type\":\"String\",\"def\":\"无\",\"remark\":\"手机号码\",\"inUrl\":\"false\"},{\"name\":\"templateCode\",\"necessary\":\"true\",\"type\":\"String\",\"def\":\"无\",\"remark\":\"模版编号\",\"inUrl\":\"false\"},{\"name\":\"bussinessCode\",\"necessary\":\"true\",\"type\":\"String\",\"def\":\"无\",\"remark\":\"应用方编号\",\"inUrl\":\"false\"}]', '请求地址:172.16.2.86:8080/api/sendSms.json\r\n请求头:\r\n请求参数:\r\n	mobile=无\r\n	templateCode=无\r\n	bussinessCode=无\r\n', '[]', '', '', '', '1', 'dc92d9d2-267a-4418-9113-da58446e9752', '短信发送', '<p>用于发送短信的接口</p>', '[]', 'userName：admin | trueName：超级管理员', '2016-08-27 10:01:00', '2016-08-27 09:08:48', '1.0', '0', '[]');
 
 -- ----------------------------
 -- Table structure for log

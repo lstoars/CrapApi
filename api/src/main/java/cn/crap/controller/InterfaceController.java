@@ -11,6 +11,8 @@ import java.util.Map;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 
+import cn.crap.model.*;
+import cn.crap.model.Error;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -34,10 +36,6 @@ import cn.crap.inter.service.ICacheService;
 import cn.crap.inter.service.IErrorService;
 import cn.crap.inter.service.IInterfaceService;
 import cn.crap.inter.service.IDataCenterService;
-import cn.crap.model.Error;
-import cn.crap.model.Interface;
-import cn.crap.model.User;
-import cn.crap.model.DataCenter;
 import cn.crap.utils.Const;
 import cn.crap.utils.DateFormartUtil;
 import cn.crap.utils.GetBeanBySetting;
@@ -50,7 +48,7 @@ import cn.crap.utils.Tools;
 @Scope("prototype")
 @Controller
 @RequestMapping("/interface")
-public class InterfaceController extends BaseController<Interface>{
+public class InterfaceController extends BaseController<Interface> {
 
 	@Autowired
 	private IInterfaceService interfaceService;
@@ -60,12 +58,12 @@ public class InterfaceController extends BaseController<Interface>{
 	private IErrorService errorService;
 	@Autowired
 	private ICacheService cacheService;
-	
+
 	@RequestMapping("/list.do")
 	@ResponseBody
 	@AuthPassport
 	public JsonResult list(@ModelAttribute Interface interFace,
-			@RequestParam(defaultValue = "1") Integer currentPage){
+						   @RequestParam(defaultValue = "1") Integer currentPage) {
 		return interfaceService.getInterfaceList(page, map, interFace, currentPage);
 	}
 
@@ -73,70 +71,78 @@ public class InterfaceController extends BaseController<Interface>{
 	@ResponseBody
 	@AuthPassport
 	public JsonResult detail(@ModelAttribute Interface interFace) {
-		if(!interFace.getId().equals(Const.NULL_ID)){
-			model= interfaceService.get(interFace.getId());
-		}else{
+		if (!interFace.getId().equals(Const.NULL_ID)) {
+			model = interfaceService.get(interFace.getId());
+		} else {
 			model = new Interface();
 			model.setModuleId(interFace.getModuleId());
+			Setting params = cacheService.getSetting("COMMON_PARAMS");
+			if (params != null) {
+				model.setParam(params.getValue());
+			}
+			Setting resp = cacheService.getSetting("COMMON_RESP");
+			if (resp != null) {
+				model.setResponseParam(resp.getValue());
+			}
 		}
 		return new JsonResult(1, model);
 	}
-	
+
 
 	@RequestMapping("/detail/pdf.do")
 	public String pdf(@ModelAttribute Interface interFace) throws Exception {
 		interFace = interfaceService.get(interFace.getId());
 		request.setAttribute("model", interFace);
-		if(interFace.getParam().startsWith("form=")){
-			request.setAttribute("formParams", JSONArray.toArray(JSONArray.fromObject(interFace.getParam().substring(5)),ParamDto.class));
-		}else{
+		if (interFace.getParam().startsWith("form=")) {
+			request.setAttribute("formParams", JSONArray.toArray(JSONArray.fromObject(interFace.getParam().substring(5)), ParamDto.class));
+		} else {
 			request.setAttribute("customParams", interFace.getParam());
 		}
-		request.setAttribute("headers", JSONArray.toArray(JSONArray.fromObject(interFace.getHeader()),ParamDto.class));
-		
-		Object responseParam = JSONArray.toArray(JSONArray.fromObject(interFace.getResponseParam()),ResponseParamDto.class);
+		request.setAttribute("headers", JSONArray.toArray(JSONArray.fromObject(interFace.getHeader()), ParamDto.class));
+
+		Object responseParam = JSONArray.toArray(JSONArray.fromObject(interFace.getResponseParam()), ResponseParamDto.class);
 		request.setAttribute("responseParam", responseParam);
-		Object errors = JSONArray.toArray(JSONArray.fromObject(interFace.getErrors()),ErrorDto.class);
+		Object errors = JSONArray.toArray(JSONArray.fromObject(interFace.getErrors()), ErrorDto.class);
 		request.setAttribute("errors", errors);
 		request.setAttribute("MAIN_COLOR", cacheService.getSetting("MAIN_COLOR").getValue());
 		return "/WEB-INF/views/interFacePdf.jsp";
 	}
-	
+
 	@RequestMapping("/download/pdf.do")
 	@ResponseBody
-	public void download(@ModelAttribute Interface interFace,HttpServletRequest req) throws Exception {
+	public void download(@ModelAttribute Interface interFace, HttpServletRequest req) throws Exception {
 		interFace = interfaceService.get(interFace.getId());
-		String displayFilename = "CrapApi"+System.currentTimeMillis()+".pdf";
-        byte[] buf = new byte[1024 * 1024 * 10];  
-        int len = 0; 
-        ServletOutputStream ut = null;
-        BufferedInputStream br = null;  
-        response.setHeader("Pragma", "No-cache");  
-        response.setHeader("Cache-Control", "must-revalidate, no-transform");  
-        response.setDateHeader("Expires", 0L);  
- 
-        String userAgent = req.getHeader("User-Agent");  
-        boolean isIE = (userAgent != null) && (userAgent.toLowerCase().indexOf("msie") != -1); 
-        response.setContentType("application/x-download"); 
-        if (isIE) {  
-            displayFilename = URLEncoder.encode(displayFilename, "UTF-8");
-            response.setHeader("Content-Disposition", "attachment;filename=\"" + displayFilename + "\"");  
-        } else {  
-            displayFilename = new String(displayFilename.getBytes("UTF-8"), "ISO8859-1");
-            response.setHeader("Content-Disposition", "attachment;filename=" + displayFilename);  
-        } 
-        br = new BufferedInputStream(new FileInputStream(Html2Pdf.createPdf(req,interFace.getId())));
-        ut = response.getOutputStream();  
-        while ((len = br.read(buf)) != -1)  
-             ut.write(buf, 0, len);
-        br.close();
+		String displayFilename = "CrapApi" + System.currentTimeMillis() + ".pdf";
+		byte[] buf = new byte[1024 * 1024 * 10];
+		int len = 0;
+		ServletOutputStream ut = null;
+		BufferedInputStream br = null;
+		response.setHeader("Pragma", "No-cache");
+		response.setHeader("Cache-Control", "must-revalidate, no-transform");
+		response.setDateHeader("Expires", 0L);
+
+		String userAgent = req.getHeader("User-Agent");
+		boolean isIE = (userAgent != null) && (userAgent.toLowerCase().indexOf("msie") != -1);
+		response.setContentType("application/x-download");
+		if (isIE) {
+			displayFilename = URLEncoder.encode(displayFilename, "UTF-8");
+			response.setHeader("Content-Disposition", "attachment;filename=\"" + displayFilename + "\"");
+		} else {
+			displayFilename = new String(displayFilename.getBytes("UTF-8"), "ISO8859-1");
+			response.setHeader("Content-Disposition", "attachment;filename=" + displayFilename);
+		}
+		br = new BufferedInputStream(new FileInputStream(Html2Pdf.createPdf(req, interFace.getId())));
+		ut = response.getOutputStream();
+		while ((len = br.read(buf)) != -1)
+			ut.write(buf, 0, len);
+		br.close();
 	}
-	
+
 	@RequestMapping("/copy.do")
 	@ResponseBody
 	@AuthPassport
 	public JsonResult copy(@ModelAttribute Interface interFace) throws MyException, IOException {
-		if(interfaceService.getCount(Tools.getMap("url",interFace.getUrl()))>0){
+		if (interfaceService.getCount(Tools.getMap("url", interFace.getUrl())) > 0) {
 			throw new MyException("000004");
 		}
 		interFace.setId(null);
@@ -144,38 +150,39 @@ public class InterfaceController extends BaseController<Interface>{
 		GetBeanBySetting.getSearchService().update(interFace.toSearchDto());
 		return new JsonResult(1, interFace);
 	}
-	
+
 	@RequestMapping("/webList.do")
 	@ResponseBody
 	public JsonResult webList(@ModelAttribute Interface interFace,
-			@RequestParam(defaultValue = "1") Integer currentPage,String password,String visitCode) throws MyException{
+							  @RequestParam(defaultValue = "1") Integer currentPage, String password, String visitCode) throws MyException {
 		DataCenter dc = dataCenterService.get(interFace.getModuleId());
 		Tools.canVisitModule(dc.getPassword(), password, visitCode, request);
-		return interfaceService.getInterfaceList(page, map,interFace, currentPage);
+		return interfaceService.getInterfaceList(page, map, interFace, currentPage);
 	}
 
 	@RequestMapping("/webDetail.do")
 	@ResponseBody
-	public JsonResult webDetail(@ModelAttribute Interface interFace,String password,String visitCode) throws MyException {
+	public JsonResult webDetail(@ModelAttribute Interface interFace, String password, String visitCode) throws MyException {
 		interFace = interfaceService.get(interFace.getId());
-		if(interFace!=null){
+		if (interFace != null) {
 			Tools.canVisitModule(cacheService.getModule(interFace.getModuleId()).getPassword(), password, visitCode, request);
 			/**
 			 * 查询相同模块下，相同接口名的其它版本号
 			 */
 			List<Interface> versions = interfaceService.findByMap(
-					Tools.getMap("moduleId",interFace.getModuleId(),"interfaceName",interFace.getInterfaceName(),"version|<>",interFace.getVersion()), null, null);
-			return new JsonResult(1, interFace, null, 
+					Tools.getMap("moduleId", interFace.getModuleId(), "interfaceName", interFace.getInterfaceName(), "version|<>", interFace.getVersion()), null, null);
+			return new JsonResult(1, interFace, null,
 					Tools.getMap("versions", versions, "crumbs",
-							Tools.getCrumbs( cacheService.getModuleName(interFace.getModuleId()), "web.do#/webInterface/list/"+interFace.getModuleId() +"/" +cacheService.getModuleName(interFace.getModuleId())
-							,interFace.getInterfaceName() , "void")));
-		}else{
+							Tools.getCrumbs(cacheService.getModuleName(interFace.getModuleId()), "web.do#/webInterface/list/" + interFace.getModuleId() + "/" + cacheService.getModuleName(interFace.getModuleId())
+									, interFace.getInterfaceName(), "void")));
+		} else {
 			throw new MyException("000012");
 		}
 	}
-	
+
 	/**
 	 * 根据参数生成请求示例
+	 *
 	 * @param interFace
 	 * @return
 	 */
@@ -188,13 +195,13 @@ public class InterfaceController extends BaseController<Interface>{
 
 	@RequestMapping("/addOrUpdate.do")
 	@ResponseBody
-	@AuthPassport(authority=Const.AUTH_INTERFACE)
+	@AuthPassport(authority = Const.AUTH_INTERFACE)
 	public JsonResult addOrUpdate(
 			@ModelAttribute Interface interFace) throws IOException, MyException {
-		if(MyString.isEmpty(interFace.getUrl()))
+		if (MyString.isEmpty(interFace.getUrl()))
 			return new JsonResult(new MyException("000005"));
 		interFace.setUrl(interFace.getUrl().trim());
-		
+
 		/**
 		 * 根据选着的错误码id，组装json字符串
 		 */
@@ -211,26 +218,26 @@ public class InterfaceController extends BaseController<Interface>{
 			List<Error> errors = errorService.findByMap(map, null,
 					null);
 			interFace.setErrors(JSONArray.fromObject(errors).toString());
-		}else{
+		} else {
 			interFace.setErrors("[]");
 		}
 		String token = MyCookie.getCookie(Const.COOKIE_TOKEN, false, request);
 		User user = (User) cacheService.getObj(Const.CACHE_USER + token);
-		interFace.setUpdateBy("userName："+user.getUserName()+" | trueName："+ user.getTrueName());
+		interFace.setUpdateBy("userName：" + user.getUserName() + " | trueName：" + user.getTrueName());
 		interFace.setUpdateTime(DateFormartUtil.getDateByFormat(DateFormartUtil.YYYY_MM_DD_HH_mm));
 		//请求示例为空，则自动添加
-		if(MyString.isEmpty(interFace.getRequestExam())){
+		if (MyString.isEmpty(interFace.getRequestExam())) {
 			interfaceService.getInterFaceRequestExam(interFace);
 		}
 		if (!MyString.isEmpty(interFace.getId())) {
-			if( interfaceService.getCount(Tools.getMap("url",interFace.getUrl(),"id|!=",interFace.getId())) >0 ){
+			if (interfaceService.getCount(Tools.getMap("url", interFace.getUrl(), "id|!=", interFace.getId())) > 0) {
 				throw new MyException("000004");
 			}
 			interfaceService.update(interFace, "接口", "");
 			GetBeanBySetting.getSearchService().add(interFace.toSearchDto());
 		} else {
 			interFace.setId(null);
-			if(interfaceService.getCount(Tools.getMap("url",interFace.getUrl()))>0){
+			if (interfaceService.getCount(Tools.getMap("url", interFace.getUrl())) > 0) {
 				return new JsonResult(new MyException("000004"));
 			}
 			interfaceService.save(interFace);
@@ -253,74 +260,74 @@ public class InterfaceController extends BaseController<Interface>{
 	@ResponseBody
 	@AuthPassport
 	@Override
-	public JsonResult changeSequence(@RequestParam String id,@RequestParam String changeId) {
+	public JsonResult changeSequence(@RequestParam String id, @RequestParam String changeId) {
 		Interface change = interfaceService.get(changeId);
 		model = interfaceService.get(id);
 		int modelSequence = model.getSequence();
-		
+
 		model.setSequence(change.getSequence());
 		change.setSequence(modelSequence);
-		
+
 		interfaceService.update(model);
 		interfaceService.update(change);
 		return new JsonResult(1, null);
 	}
-	
+
 	@RequestMapping("/debug.do")
 	@ResponseBody
-	public JsonResult debug(@RequestParam String params, @RequestParam String headers, @RequestParam(defaultValue="") String customParams,
-			@RequestParam String debugMethod,@RequestParam String url, String moduleUrl) throws Exception {
-		if(!MyString.isEmpty(moduleUrl))
+	public JsonResult debug(@RequestParam String params, @RequestParam String headers, @RequestParam(defaultValue = "") String customParams,
+							@RequestParam String debugMethod, @RequestParam String url, String moduleUrl) throws Exception {
+		if (!MyString.isEmpty(moduleUrl))
 			url = moduleUrl + url;
-		
+
 		JSONArray jsonParams = JSONArray.fromObject(params);
 		JSONArray jsonHeaders = JSONArray.fromObject(headers);
-		Map<String,String> httpParams = new HashMap<String,String>();
-		for(int i=0;i<jsonParams.size();i++){
+		Map<String, String> httpParams = new HashMap<String, String>();
+		for (int i = 0; i < jsonParams.size(); i++) {
 			JSONObject param = jsonParams.getJSONObject(i);
-			for(Object paramKey:param.keySet()){
-				if(url.contains("{"+paramKey.toString()+"}")){
-					url = url.replace("{"+paramKey.toString()+"}", param.getString(paramKey.toString()));
-				}else{
+			for (Object paramKey : param.keySet()) {
+				if (url.contains("{" + paramKey.toString() + "}")) {
+					url = url.replace("{" + paramKey.toString() + "}", param.getString(paramKey.toString()));
+				} else {
 					httpParams.put(paramKey.toString(), param.getString(paramKey.toString()));
 				}
-				
+
 			}
 		}
-		
-		Map<String,String> httpHeaders = new HashMap<String,String>();
-		for(int i=0;i<jsonHeaders.size();i++){
+
+		Map<String, String> httpHeaders = new HashMap<String, String>();
+		for (int i = 0; i < jsonHeaders.size(); i++) {
 			JSONObject param = jsonHeaders.getJSONObject(i);
-			for(Object paramKey:param.keySet()){
+			for (Object paramKey : param.keySet()) {
 				httpHeaders.put(paramKey.toString(), param.getString(paramKey.toString()));
 			}
 		}
 		// 如果自定义参数不为空，则表示需要使用post发送自定义包体
-		if(!MyString.isEmpty(customParams)){
-			return new JsonResult(1, Tools.getMap("debugResult",HttpPostGet.postBody(url, customParams, httpHeaders)));
+		if (!MyString.isEmpty(customParams)) {
+			return new JsonResult(1, Tools.getMap("debugResult", HttpPostGet.postBody(url, customParams, httpHeaders)));
 		}
-		
-		try{
-			switch(debugMethod){
-			case "POST":
-				return new JsonResult(1, Tools.getMap("debugResult",HttpPostGet.post(url, httpParams, httpHeaders)));
-			case "GET":
-				return new JsonResult(1, Tools.getMap("debugResult",HttpPostGet.get(url, httpParams, httpHeaders)));
-			case "PUT":
-				return new JsonResult(1, Tools.getMap("debugResult",HttpPostGet.put(url, httpParams, httpHeaders)));
-			case "DELETE":
-				return new JsonResult(1, Tools.getMap("debugResult",HttpPostGet.delete(url, httpParams, httpHeaders)));
-			case "HEAD":
-				return new JsonResult(1, Tools.getMap("debugResult",HttpPostGet.head(url, httpParams, httpHeaders)));
-			case "OPTIONS":
-				return new JsonResult(1, Tools.getMap("debugResult",HttpPostGet.options(url, httpParams, httpHeaders)));
-			case "TRACE":
-				return new JsonResult(1, Tools.getMap("debugResult",HttpPostGet.trace(url, httpParams, httpHeaders)));
-			default:
-				return new JsonResult(1, Tools.getMap("debugResult","不支持的请求方法："+debugMethod));
-		}
-		}catch(Exception e){
-			return new JsonResult(1, Tools.getMap("debugResult","调试出错\r\nmessage:"+e.getMessage()));
+
+		try {
+			switch (debugMethod) {
+				case "POST":
+					return new JsonResult(1, Tools.getMap("debugResult", HttpPostGet.post(url, httpParams, httpHeaders)));
+				case "GET":
+					return new JsonResult(1, Tools.getMap("debugResult", HttpPostGet.get(url, httpParams, httpHeaders)));
+				case "PUT":
+					return new JsonResult(1, Tools.getMap("debugResult", HttpPostGet.put(url, httpParams, httpHeaders)));
+				case "DELETE":
+					return new JsonResult(1, Tools.getMap("debugResult", HttpPostGet.delete(url, httpParams, httpHeaders)));
+				case "HEAD":
+					return new JsonResult(1, Tools.getMap("debugResult", HttpPostGet.head(url, httpParams, httpHeaders)));
+				case "OPTIONS":
+					return new JsonResult(1, Tools.getMap("debugResult", HttpPostGet.options(url, httpParams, httpHeaders)));
+				case "TRACE":
+					return new JsonResult(1, Tools.getMap("debugResult", HttpPostGet.trace(url, httpParams, httpHeaders)));
+				default:
+					return new JsonResult(1, Tools.getMap("debugResult", "不支持的请求方法：" + debugMethod));
+			}
+		} catch (Exception e) {
+			return new JsonResult(1, Tools.getMap("debugResult", "调试出错\r\nmessage:" + e.getMessage()));
 		}
 	}
 

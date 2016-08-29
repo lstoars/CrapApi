@@ -40,10 +40,6 @@ public class Interface extends BaseModel implements Serializable {
 	private String errors;
 	private String version;//版本号
 	private String header;//请求头
-	private String dubboService;
-	private String serviceMethod;
-	private Integer timeout;
-	private Integer retries;
 
 	public Interface() {
 	}
@@ -252,40 +248,5 @@ public class Interface extends BaseModel implements Serializable {
 
 	public void setHeader(String header) {
 		this.header = header;
-	}
-
-	@Column(name = "dubboService")
-	public String getDubboService() {
-		return dubboService;
-	}
-
-	public void setDubboService(String dubboService) {
-		this.dubboService = dubboService;
-	}
-
-	@Column(name = "serviceMethod")
-	public String getServiceMethod() {
-		return serviceMethod;
-	}
-
-	public void setServiceMethod(String serviceMethod) {
-		this.serviceMethod = serviceMethod;
-	}
-	@Column(name = "timeout")
-	public Integer getTimeout() {
-		return timeout;
-	}
-
-	public void setTimeout(Integer timeout) {
-		this.timeout = timeout;
-	}
-
-	@Column(name = "retries")
-	public Integer getRetries() {
-		return retries;
-	}
-
-	public void setRetries(Integer retries) {
-		this.retries = retries;
 	}
 }

@@ -1,6 +1,7 @@
 package cn.crap.service;
 
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,8 @@ import cn.crap.utils.Tools;
 @Service
 @Repository(value = "cacheService")
 public class CacheService implements ICacheService {
-	private ICacheDao cacheDao = GetBeanBySetting.getCacheDao();
+	@Resource(name = "memoryCacheDao")
+	private ICacheDao cacheDao;
 	@Resource(name="settingDao")
 	private ISettingDao settingDao;
 	@Resource(name="dataCenterDao")
@@ -29,7 +31,7 @@ public class CacheService implements ICacheService {
 	public static String cacheSettingKeyPre = "cache:setting";
 	public static String cacheSettingList = "cache:settingList";
 	private static int cacheTime = 10 * 60; // 10分钟缓存
-	
+
 	@Override
 	public Object getObj(String key){
 		return cacheDao.getObj(key);
