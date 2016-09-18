@@ -103,7 +103,7 @@ public class LoginController extends BaseController<User> {
 						}
 					}
 					// 将角色组合：数据类型+模块存入session，拦截器中将根据注解类型判断用户是否有权限操作数据
-					cacheService.setStr(Const.CACHE_AUTH + token, sb.toString(), Const.CACHE_USER_TIME);
+					cacheService.setStr(Const.CACHE_AUTH + token, sb.toString(), 60 * 10 * 12);
 					
 					MyCookie.addCookie(Const.COOKIE_USERNAME, model.getUserName(), response);
 					MyCookie.addCookie(Const.COOKIE_REMBER_PWD, model.getRemberPwd() , response);

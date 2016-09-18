@@ -106,7 +106,7 @@ public class Tools {
 					throw new MyException("000007");
 				}
 			}
-			cacheService.setStr(Const.CACHE_TEMP_PWD + MyCookie.getCookie(Const.COOKIE_UUID, false, request), password, 10 * 60);
+			cacheService.setStr(Const.CACHE_TEMP_PWD + MyCookie.getCookie(Const.COOKIE_UUID, false, request), password, 12 * 10 * 60);
 		}
 	}
 	/**
